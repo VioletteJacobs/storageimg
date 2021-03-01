@@ -15,6 +15,7 @@ class CreateBacksTable extends Migration
     {
         Schema::create('backs', function (Blueprint $table) {
             $table->id();
+            $table->string("src");
             $table->timestamps();
         });
     }

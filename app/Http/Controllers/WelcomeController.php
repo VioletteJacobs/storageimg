@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Back;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
     public function index(){
-        return view("welcome");
+        $doc = Back::all();
+        return view("welcome", compact("doc"));
     }
 }
