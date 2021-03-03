@@ -16,7 +16,7 @@
         <div>
             <h1>Fichiers</h1>
             @foreach ($doc as $item)
-                @if (Str::after($item->src, '.')== "pdf" || Str::after($item->src, '.')=="doc")
+                @if (Str::after($item->src, '.')!= "jpg" && Str::after($item->src, '.')!="png")
                     
                 <p>{{$item->src}}</p>
                     

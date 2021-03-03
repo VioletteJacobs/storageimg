@@ -24,4 +24,32 @@ class BackController extends Controller
         return redirect()-> back();
 
     }
+    public function destroy($id){
+        $destroy = Back::find($id);
+        Storage::delete('public/img/'.$destroy->src);
+        $destroy->delete();
+        return redirect()->back();
+    }
+    public function edit($id){
+        $edit = Back::find($id);
+        return view("edit.blade.php");
+
+    }
+    public function update(Request $request, $id){
+        $validate=$request->validate([
+            "src"=> "required|min:1|max:500"
+        ]);
+        $update = Back::find($id);
+        Storage::delete('public/img/'.$update->src);
+        $update->src = $request->file("src")->hashName();
+        $update->save();
+        Storage::put('public/img/'.$update->src);
+        return redirect('/');
+
+
+    }
+    public function download($id){
+        $down = Back::find($id);
+        return Storage::download('public/img/'.$down->src);
+    }
 }

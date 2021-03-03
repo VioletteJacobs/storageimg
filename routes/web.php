@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[WelcomeController::class, "index"]) ;
 Route::get('/back',[BackController::class, "index"]) ;
-
 Route::get('/fichier',[BackController::class, "create"]) ;
+Route::get('/edit',[BackController::class,"edit"]);
+Route::get('download/{id}',[BackController::class, "download"]);
 
 Route::post('/files',[BackController::class, "store"]);
+
+Route::post('/delete/{id}',[BackController::class, "destroy"]);
+Route::post('/update/{id}',[BackController::class,"update"]);
